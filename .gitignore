@@ -1,0 +1,6 @@
+#project specific
+config.py
+
+#python specific
+__pycache__/
+*.py[cod]
