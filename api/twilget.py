@@ -1,6 +1,9 @@
 import requests
 from twilio.rest import Client
 
+def twilGet():
+    return 0
+
 resp = requests.get(
     "https://api.twilio.com/2010-04-01/Accounts/{}/Messages.json".format(twilAccSID),
     auth= HTTPBasicAuth(twilAccSID, twilAuthTok)
