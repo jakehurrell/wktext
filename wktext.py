@@ -2,40 +2,37 @@ import requests
 import json
 import datetime
 
+import wkapi
 from config import wkKey
 
-WKBASE = "https://api.wanikani.com/v2/"
-WKHEADER = {"Authorization": "Bearer " + wkKey}
+#dt = str(datetime.datetime.utcnow().isoformat()) + "Z"
 
-dt = str(datetime.datetime.utcnow().isoformat()) + "Z"
-
-resp = requests.get(WKBASE + "summary", headers=WKHEADER)
-subjectID = (resp.json())["data"]["reviews"][0]["subject_ids"][1]
-nextreview = (resp.json())["data"]["reviews"][0]["available_at"]
-
-print(nextreview)
+resp = wkapi.wkget("summary", wkKey)
+subjectID = (resp.json())["data"]["reviews"][0]["subject_ids"][0]
 print(subjectID)
-resp = requests.get(WKBASE + "subjects/{}".format(subjectID), headers=WKHEADER)
+nextreview = (resp.json())["data"]["reviews"][0]["available_at"]
+print(nextreview)
+
+resp = wkapi.wkget("subjects/{}".format(subjectID), wkKey)
 print(resp.json()["data"]["characters"])
 
-#"Content-Type": "application/json; charset=utf-8"
 
-WKPOSTHEADER = {"Authorization": "Bearer " + wkKey, "Content-Type": "application/json; charset=utf-8", "WaniKani-Revision": "20170710"}
-
-resp = requests.put(WKBASE + "study_materials/{}".format(subjectID), headers=WKPOSTHEADER, data={
+data = {
     "study_material": {
-        "meaning_note": "absolutely meaninglesssssssssssssssssssssss",
-    }
-})
+        "meaning_note": "trying put",
+        "reading_note": "this might work!",
+    }}
 
+resp = wkapi.wkput("study_materials/6651223", wkKey, data)
 print(resp)
+print(resp.json())
+
+exit()
 
 
 
 # subject ID is a valid alternative to using assignment id
 #found in "create a review"
-
-exit()
 
 # create a review means the review is finished and you are just communicating how many times the meaning/reading was incorrect
 

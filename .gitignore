@@ -1,6 +1,9 @@
-#project specific
+#project
 config.py
 
-#python specific
+#python
 __pycache__/
 *.py[cod]
+
+#vscode
+.vscode
