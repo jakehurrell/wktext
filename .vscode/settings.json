@@ -1,6 +1,0 @@
-{
-    "editor.formatOnSave": true,
-    "python.formatting.provider": "autopep8",
-    "prettier.printWidth": 50,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-}
