@@ -3,11 +3,12 @@ import requests
 #EXAMPLE of data structure
 #
 #data = {
-#    "study_material": {
-#        "subject_id": subjectID,
-#        "meaning_note": "insert meaning here",
-#        "reading_note": "insert reading note here",
-#    }}
+#    "review" : {
+#        "subject_id": ####,
+#        "incorrect_meaning_answers": 0,
+#        "incorrect_reading_answers": 0
+#    }
+#}
 
 def wkpost(endpoint, wkKey, data):
 
