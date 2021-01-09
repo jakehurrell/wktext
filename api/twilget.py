@@ -1,22 +1,12 @@
 import requests
-from twilio.rest import Client
+from requests.auth import HTTPBasicAuth
 
-def twilGet():
-    return 0
+def twilget(sender, receiver, twilAccSID, twilAuthTok):
 
-resp = requests.get(
-    "https://api.twilio.com/2010-04-01/Accounts/{}/Messages.json".format(twilAccSID),
-    auth= HTTPBasicAuth(twilAccSID, twilAuthTok)
-)
-print(resp)
-print(resp.json())
+    resp = requests.get(
+        "https://api.twilio.com/2010-04-01/Accounts/{}/Messages.json".format(twilAccSID),
+        params=(("To", receiver), ("From", sender)),
+        auth= HTTPBasicAuth(twilAccSID, twilAuthTok)
+    )
 
-exit()
-
-twilClient = Client(twilAccSID, twilAuthTok)
-
-#message = twilClient.messages.create(
-#    body="Test from wktext",
-#    from_="+16472501247",
-#    to="+16479904096"
-#)
+    return resp.json()["messages"][0]["body"]
